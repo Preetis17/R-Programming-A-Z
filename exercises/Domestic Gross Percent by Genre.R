@@ -1,6 +1,7 @@
 # Import data
-setwd('/home/kunkler/git/R-Programming-A-Z/')
-movies <- read.csv("datasets/Section6-Homework-Data.csv")
+#setwd('/home/kunkler/git/R-Programming-A-Z/')
+#movies <- read.csv("datasets/Section6-Homework-Data.csv")
+movies <- read.csv(file.choose())
 View(movies)
 
 # Check data
@@ -15,10 +16,11 @@ movies.filtered <- movies[movies$Studio == "Buena Vista Studios" | movies$Studio
 movies.filtered <- movies.filtered[movies.filtered$Genre == "action" | movies.filtered$Genre == "adventure" | movies.filtered$Genre == "comedy" | movies.filtered$Genre == "drama" | movies.filtered$Genre == "animation",]
 
 colnames(movies.filtered) <- c("Weekday", "Director", "Genre", "Title", "ReleaseDate", "Studio", "AdjustedGross", "Budget", "Gross", "IMDb",
-                               "MovieLens", "Overseas", "Profit", "ProfitPercent", "Runtime", "USA", "GrossUSA", "GrossUSA.Percent")
+                               "MovieLens", "Overseas", "OverseasPercent", "Profit", "ProfitPercent", "Runtime", "USA", "GrossUSA")
 head(movies.filtered)
 summary(movies.filtered)
 
+movies.filtered[movies.filtered$Runtime < 60,]
 #----------------------------- Explore Data
 library(ggplot2)
 
