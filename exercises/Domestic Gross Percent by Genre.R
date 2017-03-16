@@ -25,7 +25,7 @@ movies.filtered[movies.filtered$Runtime < 60,]
 library(ggplot2)
 
 # Check on which days most movies are released
-p <- ggplot(data=movies.filtered, aes(x=Day.of.Week))
+p <- ggplot(data=movies.filtered, aes(x=Weekday))
 p + geom_bar()
 #>>> No movies release on monday!
 
