@@ -36,11 +36,9 @@ p + geom_bar()
 
 #---------------------------- Create wanted Plot
 
-g <- ggplot(data=movies.filtered, aes(x=Genre, 
-                                      y=GrossUSA,
-                                      size=Budget))
+g <- ggplot(data=movies.filtered, aes(x=Genre, y=GrossUSA))
 
-sc_plot <- g + geom_jitter(aes(color=Studio)) + geom_boxplot(alpha=0.5)
+sc_plot <- g + geom_jitter(aes(color=Studio, size=Budget)) + geom_boxplot(alpha=0.5)
 
 sc_plot$labels$size = "Budget $M" #Change legend label
 
