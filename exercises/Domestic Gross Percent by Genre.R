@@ -24,6 +24,11 @@ movies.filtered[movies.filtered$Runtime < 60,]
 #----------------------------- Explore Data
 library(ggplot2)
 
+#install.packages("extrafont") #needed for Comic Sans MS Font
+library(extrafont)
+font_import()
+loadfonts(device = "win")
+
 # Check on which days most movies are released
 p <- ggplot(data=movies.filtered, aes(x=Weekday))
 p + geom_bar()
@@ -32,20 +37,22 @@ p + geom_bar()
 #---------------------------- Create wanted Plot
 
 g <- ggplot(data=movies.filtered, aes(x=Genre, 
-                                      y=GrossUSA.Percent,
+                                      y=GrossUSA,
                                       size=Budget))
 
 sc_plot <- g + geom_jitter(aes(color=Studio)) + geom_boxplot(alpha=0.5)
+
+sc_plot$labels$size = "Budget $M" #Change legend label
 
 sc_plot + 
   xlab("Genre") +
   ylab("Gross % USA") + 
   ggtitle("Domestic Gross % by Genre") + 
-  theme(axis.title = element_text(size=20, color="Blue", family="Palatino"),
-        axis.text = element_text(size=12, family="Palatino"),
-        plot.title = element_text(size=25, color="Black", family="Palatino"),
+  theme(text = element_text(family="Comic Sans MS"),
+        axis.title = element_text(size=20, color="Blue"),
+        axis.text = element_text(size=12),
+        plot.title = element_text(size=25, color="Black"),
         
-        legend.title = element_text(size=15, family="Palatino"),
-        legend.text = element_text(size=12, family="Palatino"),
-        
-        )
+        legend.title = element_text(size=15),
+        legend.text = element_text(size=12))
+
